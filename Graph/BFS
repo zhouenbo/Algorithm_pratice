@@ -1,0 +1,19 @@
+# 127. Word Ladder
+#
+# Given two words beginWord and endWord, and a dictionary wordList, return the length of the shortest transformation sequence from beginWord to endWord, such that:
+#
+# Only one letter can be changed at a time.
+# Each transformed word must exist in the word list.
+# Return 0 if there is no such transformation sequence.
+#
+# Example 1:
+#
+# Input: beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]
+# Output: 5
+# Explanation: As one shortest transformation is "hit" -> "hot" -> "dot" -> "dog" -> "cog", return its length 5.
+
+#############################################################
+# 序列变换，可以转换成图的问题
+# 图的广度优先周游， 可以双向广度优先周游
+# 这条道题的trick是如何在线性时间内构建图g
+#############################################################
