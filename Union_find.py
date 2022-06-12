@@ -178,3 +178,44 @@ class Solution:
             else:
                 res.append(res[-1])
         return res
+
+
+# Union Find with path compression
+class UnionFind:
+    def __init__(self, n):
+        self.p = list(range(n))
+
+    def find(self, x):
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x])
+        return self.p[x]
+
+    def union(self, x, y):
+        self.p[self.find(x)] = self.find(y)
+
+
+# union find with path compression and union-by-rank
+class UnionFindwRank:
+    def __init__(self, n):
+        self.p = list(range(n))
+        self.rank = [1] * n
+
+    def find(self, x):
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x]) # path compression
+        return self.p[x]
+
+    def union(self, x, y):
+        xp = self.find(x)
+        yp = self.find(y)
+        if xp == yp:
+            return
+
+        # union by rank
+        if self.rank[xp] > self.rank[yp]:
+            self.p[yp] = xp
+        elif self.rank[xp] < self.rank[yp]:
+            self.p[xp] = yp
+        else:
+            self.p[xp] = yp
+            self.rank[yp] += 1
