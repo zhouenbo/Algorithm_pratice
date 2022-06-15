@@ -1,3 +1,33 @@
+import collections
+
+
+# bfs by level for binary tree
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+def bfs(root: Node):
+    if not root:
+        return []
+
+    q = collections.deque([root])
+    res = []
+    while len(q)>0:
+        l = len(q)
+        for i in range(l):
+            n = q.popleft()
+            res.append(n.val)
+            if n.left:
+                q.append(n.left)
+            if n.right:
+                q.append(n.right)
+    return res
+
+
+
 # 1192. Critical Connections in a Network
 from collections import defaultdict
 # class Solution:

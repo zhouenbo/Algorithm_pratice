@@ -199,6 +199,8 @@ class UnionFindwRank:
     def __init__(self, n):
         self.p = list(range(n))
         self.rank = [1] * n
+        self.size = [1] * n
+        self.count = n
 
     def find(self, x):
         if self.p[x] != x:
@@ -214,8 +216,17 @@ class UnionFindwRank:
         # union by rank
         if self.rank[xp] > self.rank[yp]:
             self.p[yp] = xp
-        elif self.rank[xp] < self.rank[yp]:
-            self.p[xp] = yp
+            self.size[xp] += self.size[yp]
         else:
             self.p[xp] = yp
-            self.rank[yp] += 1
+            self.size[yp] += self.size[xp]
+            if self.rank[xp] == self.rank[yp]:
+                self.rank[yp] += 1
+        self.count -= 1
+
+    def get_set_size(self, x):
+        return self.size[self.find(x)]
+
+    def num_of_sets(self):
+        return self.count
+
