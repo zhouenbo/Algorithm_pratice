@@ -26,7 +26,7 @@ def bfs_tree(root):
     ans = list()
     while not que.empty():
         current = que.get()
-        if not current:
+        if current:
             ans.append(current.val)
             que.put(current.left)
             que.put(current.right)

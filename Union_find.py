@@ -204,7 +204,7 @@ class UnionFindwRank:
 
     def find(self, x):
         if self.p[x] != x:
-            self.p[x] = self.find(self.p[x]) # path compression
+            self.p[x] = self.find(self.p[x])  # path compression
         return self.p[x]
 
     def union(self, x, y):
